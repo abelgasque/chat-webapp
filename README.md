@@ -82,7 +82,7 @@ O backend será desenvolvido utilizando as seguintes tecnologias e bibliotecas:
 
 *   **.NET 9:** Framework principal para o desenvolvimento da aplicação. Será utilizado o ASP.NET Core para a criação da API e o SignalR para a comunicação em tempo real.
 *   **Entity Framework Core:** ORM (Object-Relational Mapper) para interação com o banco de dados. Será utilizado para persistir e recuperar os dados do domínio (usuários, salas de chat, etc.).
-*   **SQL Server (ou PostgreSQL/MySQL):** Banco de dados relacional para armazenamento dos dados transacionais e de domínio. A escolha específica pode ser flexível, mas o SQL Server é uma opção robusta para ambientes .NET.
+*   **SQL Server / PostgreSQL:** Banco de dados relacional para armazenamento dos dados transacionais e de domínio. A escolha específica pode ser flexível, mas o SQL Server é uma opção robusta para ambientes .NET.
 *   **MediatR:** Biblioteca para implementação do padrão Mediator, essencial para o CQRS, facilitando a comunicação entre os componentes da aplicação (comandos, queries e handlers).
 *   **FluentValidation:** Biblioteca para validação de objetos (comandos, queries, entidades). Integrar-se-á com o pipeline do MediatR para garantir que as validações ocorram antes da execução da lógica de negócio.
 *   **AutoMapper:** Biblioteca para mapeamento de objetos entre diferentes camadas (ex: DTOs para entidades de domínio e vice-versa). Ajuda a reduzir o código boilerplate.
