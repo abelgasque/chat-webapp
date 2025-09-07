@@ -19,7 +19,7 @@ O backend será estruturado em camadas lógicas para promover a separação de p
 *   **Domínio (Domain Layer):** O coração da aplicação, contendo a lógica de negócio, entidades, objetos de valor, agregados, repositórios e serviços de domínio. É agnóstico a tecnologias de persistência ou UI.
 *   **Aplicação (Application Layer):** Orquestra as operações de negócio, coordenando o domínio e a infraestrutura. Contém os comandos, queries e seus respectivos handlers, além de serviços de aplicação que orquestram o fluxo de trabalho.
 *   **Infraestrutura (Infrastructure Layer):** Responsável por detalhes técnicos como persistência de dados (Entity Framework Core), comunicação com serviços externos, segurança e configurações. Implementa as interfaces definidas na camada de domínio e aplicação.
-*   **Apresentação/API (Presentation/API Layer):** Exporá os endpoints RESTful para o frontend e gerenciará as conexões SignalR para comunicação em tempo real. Será a interface de comunicação com o mundo exterior.
+*   **Apresentação/API (API Layer):** Exporá os endpoints RESTful para o frontend e gerenciará as conexões SignalR para comunicação em tempo real. Será a interface de comunicação com o mundo exterior.
 
 Esta estrutura visa garantir um sistema coeso, testável e escalável, onde as mudanças em uma camada têm impacto mínimo nas outras.
 
