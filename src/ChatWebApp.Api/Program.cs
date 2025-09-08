@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 using ChatWebApp.Infrastructure.Persistence.Contexts;
+using ChatWebApp.Domain.Repositories;
+using ChatApi.Infrastructure.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,6 +32,8 @@ builder.Services.AddSpaStaticFiles(configuration =>
 {
     configuration.RootPath = "ChatWebApp.Web/ClientApp/dist";
 });
+
+builder.Services.AddScoped(typeof(IRepository<>), typeof(AppRepository<>));
 
 var app = builder.Build();
 
