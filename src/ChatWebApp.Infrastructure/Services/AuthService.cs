@@ -32,10 +32,18 @@ namespace ChatWebApp.Infrastructure.Services
             _logger.LogInformation("Validating user with email {Email}", email);
             if (email == "admin@admin.com" && password == "123456")
             {
-                return new User("Admin", email);
+                return new User("Admin", email, password);
             }
 
-            return await _repository.GetByConditionAsync(e => e.Email.Equals(email));
+            User? user = await _repository.GetByConditionAsync(e => e.Email.Equals(email));
+
+            if (user is null)
+                throw new UnauthorizedAccessException("Usuário inválido");
+
+            if (!user.Password.Equals(password))
+                throw new UnauthorizedAccessException("Credenciais inválidas");
+
+            return user;
         }
 
         public string GenerateJwtToken(User user)

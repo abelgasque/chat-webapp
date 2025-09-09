@@ -17,21 +17,13 @@ namespace ChatWebApp.Application.Handlers
         public async Task<Result<LoginResult>> Handle(LoginCommand request, CancellationToken cancellationToken)
         {
             var user = await _authService.ValidateUserAsync(request.Email, request.Password);
-
-            if (user is null)
-            {
-                throw new UnauthorizedAccessException("Credenciais inválidas");
-            }
-
             var token = _authService.GenerateJwtToken(user);
 
-            var loginResult = new LoginResult
+            return Result<LoginResult>.Ok(new LoginResult
             {
                 Token = token,
                 UserName = user.Username
-            };
-
-            return Result<LoginResult>.Ok(loginResult, "Autenticado com sucesso");
+            }, "Autenticado com sucesso");
         }
     }
 }
