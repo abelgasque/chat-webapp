@@ -2,6 +2,7 @@
   <div class="row text-center mb-5">
     <div class="col-12">
       <h1 class="fw-bold text-primary">{{ title }}</h1>
+      <p class="text-muted">Chat WebApp com .NET 9 + Angular 13, arquitetura DDD e CQRS</p>
     </div>
   </div>
 
@@ -10,19 +11,70 @@
     <div class="col-md-12">
       <h2>🚀 Sobre o Sistema</h2>
       <p>
-        Nosso sistema foi desenvolvido para oferecer uma experiência completa de integração,
-        documentação e gerenciamento de serviços em um só lugar, com foco em alta performance
-        e escalabilidade.
+        O Chat WebApp é um sistema moderno e escalável, com chat em tempo real, cadastro de usuários e painel
+        administrativo.
+        Utiliza <strong>.NET 9</strong> no backend, <strong>Angular 13</strong> no frontend, SignalR para comunicação em
+        tempo real
+        e é preparado para deploy com <strong>Docker</strong> e pipelines <strong>CI/CD</strong>.
       </p>
+    </div>
+  </div>
+
+  <!-- Arquitetura Backend -->
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2>🖥 Backend: Arquitetura DDD + CQRS</h2>
       <p>
-        Ele utiliza <strong>Node.js</strong> no backend, suporta comunicação em tempo real via
-        <strong>WebSocket</strong> e é totalmente containerizado com <strong>Docker</strong>,
-        garantindo portabilidade e facilidade de deploy.
+        O backend segue os princípios de <strong>Domain-Driven Design (DDD)</strong> e <strong>CQRS</strong> para
+        separar
+        leitura e escrita, garantindo escalabilidade e performance. As camadas principais são:
       </p>
+      <ul>
+        <li><b>Domain Layer:</b> Entidades, Agregados, Value Objects, Eventos e Serviços de Domínio.</li>
+        <li><b>Application Layer:</b> Comandos, Queries, Handlers e Serviços de Aplicação.</li>
+        <li><b>Infrastructure Layer:</b> Implementações de repositórios, EF Core, integrações externas e serviços.</li>
+        <li><b>API Layer:</b> Endpoints REST e Hubs SignalR para comunicação em tempo real.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Tecnologias Backend -->
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2>🛠 Tecnologias Backend</h2>
+      <ul>
+        <li>.NET 9 + ASP.NET Core</li>
+        <li>Entity Framework Core (SQL Server/PostgreSQL)</li>
+        <li>SignalR para chat em tempo real</li>
+        <li>MediatR para CQRS</li>
+        <li>FluentValidation e AutoMapper</li>
+        <li>ASP.NET Core Identity + JWT para autenticação</li>
+        <li>Swagger/OpenAPI para documentação</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Frontend Angular -->
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2>🌐 Frontend: Angular 13</h2>
+      <ul>
+        <li>Componentes reativos e modularização (AuthModule, ChatModule, SharedModule, CoreModule)</li>
+        <li>Gestão de estado com <strong>NgRx</strong></li>
+        <li>Comunicação com backend via <strong>HttpClient</strong> e <strong>SignalR Client</strong></li>
+        <li>UI moderna com <strong>Angular Material</strong> e SCSS</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Chat em Tempo Real -->
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2>💬 Chat em Tempo Real</h2>
       <p>
-        O projeto conta com integração contínua e entrega contínua (<strong>CI/CD</strong>),
-        permitindo que atualizações sejam testadas e implantadas de forma automatizada, segura
-        e rápida.
+        Comunicação bidirecional entre clientes e servidor via SignalR, com envio e recebimento instantâneo de
+        mensagens,
+        histórico persistido em banco de dados relacional e notificações de usuários online/offline.
       </p>
     </div>
   </div>
@@ -32,30 +84,23 @@
     <div class="col-md-12">
       <h2>📖 Documentação Interativa</h2>
       <p>
-        Explore e teste os endpoints de forma prática através do
-        <strong>Swagger Documentation</strong>, sem necessidade de configurações adicionais.
+        Explore os endpoints da API diretamente no <strong>Swagger</strong>. Ideal para desenvolvedores que precisam
+        testar e integrar funcionalidades rapidamente.
       </p>
-      <a [href]="linkSwagger" target="_blank" class="btn btn-primary">
-        Acessar Swagger Docs
-      </a>
+      <a [href]="linkSwagger" target="_blank" class="btn btn-primary">Acessar Swagger Docs</a>
     </div>
   </div>
 
-  <!-- Docker & CI/CD -->
+  <!-- Docker e CI/CD -->
   <div class="row mb-5">
     <div class="col-md-12">
-      <h2>🐳 Implantação com Docker & CI/CD</h2>
+      <h2>🐳 Docker & CI/CD</h2>
       <p>
-        Configure e execute toda a aplicação com apenas um comando, garantindo deploy ágil
-        e seguro, com integração contínua automatizada.
+        Execute toda a aplicação com Docker e pipelines de CI/CD para testes e deploy automatizado.
       </p>
       <pre class="bg-dark text-white p-3 rounded" translate="no">
 docker-compose up --build
       </pre>
-      <p>
-        As pipelines de <strong>CI/CD</strong> permitem que todas as mudanças sejam testadas
-        automaticamente antes do deploy, garantindo qualidade e confiabilidade no ambiente de produção.
-      </p>
     </div>
   </div>
 
@@ -64,9 +109,7 @@ docker-compose up --build
     <div class="col-md-12">
       <h2>🔑 Painel Administrativo</h2>
       <p>
-        Acesse o painel administrativo protegido com credenciais padrão e gerencie
-        usuários, configurações e funcionalidades em tempo real, aproveitando o suporte a
-        WebSocket para notificações instantâneas.
+        Gerencie usuários, configurações e notificações em tempo real. Credenciais padrão:
       </p>
       <ul class="list-unstyled" translate="no">
         <li><b>Username:</b> {{ username }}</li>
@@ -78,12 +121,10 @@ docker-compose up --build
   <!-- Público-Alvo -->
   <div class="row mb-5">
     <div class="col-md-12">
-      <h2>👥 Para Quem é Feito</h2>
+      <h2>👥 Público-Alvo</h2>
       <p>
-        Este sistema é ideal para <strong>equipes de desenvolvimento</strong>,
-        <strong>empresas de tecnologia</strong> e <strong>profissionais que buscam agilidade</strong>.
-        Ele combina documentação clara, execução rápida em containers, comunicação em tempo real
-        via WebSocket e gestão centralizada em um único lugar.
+        Equipes de desenvolvimento, empresas de tecnologia e profissionais que buscam agilidade,
+        documentação clara, comunicação em tempo real e gestão centralizada.
       </p>
     </div>
   </div>
@@ -91,8 +132,6 @@ docker-compose up --build
 
 <div class="footer row text-center mt-5">
   <div class="col-12">
-    <p class="text-muted small">
-      &copy; {{ currentYear }} - Todos os direitos reservados | {{ title }}
-    </p>
+    <p class="text-muted small">&copy; {{ currentYear }} - Todos os direitos reservados | {{ title }}</p>
   </div>
 </div>

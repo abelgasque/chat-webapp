@@ -16,8 +16,8 @@ export class HomeComponent implements OnInit {
   constructor() {
     this.linkSwagger = `http://localhost:5017/swagger/index.html`;
     this.title = "Chat WebApp";
-    this.username = "admin@example.com";
-    this.password = "admin";
+    this.username = "admin@admin.com";
+    this.password = "123456";
     this.currentYear = new Date().getFullYear();
   }
 
