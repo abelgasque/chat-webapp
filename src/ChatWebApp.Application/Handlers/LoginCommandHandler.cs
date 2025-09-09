@@ -31,7 +31,7 @@ namespace ChatWebApp.Application.Handlers
                 UserName = user.Username
             };
 
-            return Result<LoginResult>.Ok(loginResult);
+            return Result<LoginResult>.Ok(loginResult, "Autenticado com sucesso");
         }
     }
 }
