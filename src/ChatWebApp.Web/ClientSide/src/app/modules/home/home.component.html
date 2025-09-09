@@ -1,0 +1,98 @@
+<div class="home-container container mt-5">
+  <div class="row text-center mb-5">
+    <div class="col-12">
+      <h1 class="fw-bold text-primary">{{ title }}</h1>
+    </div>
+  </div>
+
+  <!-- Sobre o Sistema -->
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2>🚀 Sobre o Sistema</h2>
+      <p>
+        Nosso sistema foi desenvolvido para oferecer uma experiência completa de integração,
+        documentação e gerenciamento de serviços em um só lugar, com foco em alta performance
+        e escalabilidade.
+      </p>
+      <p>
+        Ele utiliza <strong>Node.js</strong> no backend, suporta comunicação em tempo real via
+        <strong>WebSocket</strong> e é totalmente containerizado com <strong>Docker</strong>,
+        garantindo portabilidade e facilidade de deploy.
+      </p>
+      <p>
+        O projeto conta com integração contínua e entrega contínua (<strong>CI/CD</strong>),
+        permitindo que atualizações sejam testadas e implantadas de forma automatizada, segura
+        e rápida.
+      </p>
+    </div>
+  </div>
+
+  <!-- Swagger -->
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2>📖 Documentação Interativa</h2>
+      <p>
+        Explore e teste os endpoints de forma prática através do
+        <strong>Swagger Documentation</strong>, sem necessidade de configurações adicionais.
+      </p>
+      <a [href]="linkSwagger" target="_blank" class="btn btn-primary">
+        Acessar Swagger Docs
+      </a>
+    </div>
+  </div>
+
+  <!-- Docker & CI/CD -->
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2>🐳 Implantação com Docker & CI/CD</h2>
+      <p>
+        Configure e execute toda a aplicação com apenas um comando, garantindo deploy ágil
+        e seguro, com integração contínua automatizada.
+      </p>
+      <pre class="bg-dark text-white p-3 rounded" translate="no">
+docker-compose up --build
+      </pre>
+      <p>
+        As pipelines de <strong>CI/CD</strong> permitem que todas as mudanças sejam testadas
+        automaticamente antes do deploy, garantindo qualidade e confiabilidade no ambiente de produção.
+      </p>
+    </div>
+  </div>
+
+  <!-- Admin -->
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2>🔑 Painel Administrativo</h2>
+      <p>
+        Acesse o painel administrativo protegido com credenciais padrão e gerencie
+        usuários, configurações e funcionalidades em tempo real, aproveitando o suporte a
+        WebSocket para notificações instantâneas.
+      </p>
+      <ul class="list-unstyled" translate="no">
+        <li><b>Username:</b> {{ username }}</li>
+        <li><b>Password:</b> {{ password }}</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Público-Alvo -->
+  <div class="row mb-5">
+    <div class="col-md-12">
+      <h2>👥 Para Quem é Feito</h2>
+      <p>
+        Este sistema é ideal para <strong>equipes de desenvolvimento</strong>,
+        <strong>empresas de tecnologia</strong> e <strong>profissionais que buscam agilidade</strong>.
+        Ele combina documentação clara, execução rápida em containers, comunicação em tempo real
+        via WebSocket e gestão centralizada em um único lugar.
+      </p>
+    </div>
+  </div>
+</div>
+
+<div class="footer row text-center mt-5">
+  <div class="col-12">
+    <p class="text-muted small">
+      &copy; {{ currentYear }} - Todos os direitos reservados | {{ title }}
+    </p>
+  </div>
+</div>

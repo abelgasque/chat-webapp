@@ -1,0 +1,178 @@
+.wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.chat-drawer {
+    width: 350px;
+    max-width: 100%;
+}
+
+.home-container {
+    font-family: "Inter", sans-serif;
+    color: #222;
+    line-height: 1.7;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+
+    h1,
+    h2,
+    h3 {
+        font-family: "Montserrat", sans-serif;
+    }
+
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 2rem;
+        font-weight: 700;
+        color: #0078d7;
+        text-align: center;
+    }
+
+    h2 {
+        font-size: 2rem;
+        margin-bottom: 1.2rem;
+        color: #0056a3;
+        border-left: 6px solid #0078d7;
+        padding-left: 1rem;
+        position: relative;
+
+        &::after {
+            content: "";
+            position: absolute;
+            left: -6px;
+            bottom: -0.3rem;
+            width: 50px;
+            height: 4px;
+            background: #0078d7;
+            border-radius: 2px;
+        }
+    }
+
+    p {
+        font-size: 1.1rem;
+        color: #444;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero {
+        background: linear-gradient(135deg, #0078d7, #0056a3);
+        color: white;
+        text-align: center;
+        padding: 5rem 2rem;
+        border-radius: 0 0 2rem 2rem;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+
+        .hero-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, #ffffff, #e0f0ff);
+            color: #0056a3;
+            font-weight: 600;
+            padding: 0.9rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+
+            &:hover {
+                transform: translateY(-3px);
+                background: #e9f3ff;
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+            }
+        }
+    }
+
+    section {
+        margin: 5rem 0;
+        padding: 0 1rem;
+
+        pre {
+            background: #1e1e1e;
+            color: #dcdcdc;
+            padding: 1.2rem;
+            border-radius: 10px;
+            overflow-x: auto;
+            font-family: "Fira Code", monospace;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    .endpoints {
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+
+            .card {
+                background: #fff;
+                border-radius: 16px;
+                padding: 2rem;
+                box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+
+                &:hover {
+                    transform: translateY(-8px);
+                    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+                }
+
+                h3 {
+                    margin-bottom: 1rem;
+                    font-size: 1.5rem;
+                    color: #0078d7;
+                }
+
+                ul {
+                    list-style: none;
+                    padding: 0;
+
+                    li {
+                        background: #f0f6ff;
+                        margin: 0.4rem 0;
+                        padding: 0.6rem 1rem;
+                        border-radius: 8px;
+                        font-family: "Fira Code", monospace;
+                        transition: background 0.3s;
+
+                        &:hover {
+                            background: #e0efff;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.footer {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: #f0f0f0;
+    border-top: 1px solid #ccc;
+
+    p {
+        font-size: 0.95rem;
+        color: #666;
+    }
+
+    a {
+        color: #0078d7;
+        font-weight: 500;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

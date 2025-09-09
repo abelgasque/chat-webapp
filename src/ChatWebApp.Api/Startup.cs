@@ -15,6 +15,7 @@ namespace ChatWebApp.Api
 
         public Startup(IConfiguration configuration)
         {
+            // DotNetEnv.Env.Load();
             _configuration = configuration;
         }
 
