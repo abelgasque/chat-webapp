@@ -6,6 +6,7 @@ using System.Security.Claims;
 using System.Text;
 using ChatWebApp.Domain.Entities;
 using ChatWebApp.Domain.Services;
+using ChatWebApp.Domain.Repositories;
 
 namespace ChatWebApp.Infrastructure.Services
 {
@@ -13,19 +14,28 @@ namespace ChatWebApp.Infrastructure.Services
     {
         private readonly IConfiguration _configuration;
         private readonly ILogger<AuthService> _logger;
+        private readonly IRepository<User> _repository;
 
-        public AuthService(IConfiguration configuration, ILogger<AuthService> logger)
+        public AuthService(
+            IConfiguration configuration,
+            ILogger<AuthService> logger,
+            IRepository<User> repository
+        )
         {
             _configuration = configuration;
             _logger = logger;
+            _repository = repository;
         }
 
         public async Task<User?> ValidateUserAsync(string email, string password)
         {
             _logger.LogInformation("Validating user with email {Email}", email);
-            return (email == "admin@admin.com" && password == "123456")
-                ? new User("Admin", email)
-                : null;
+            if (email == "admin@admin.com" && password == "123456")
+            {
+                return new User("Admin", email);
+            }
+
+            return await _repository.GetByConditionAsync(e => e.Email.Equals(email));
         }
 
         public string GenerateJwtToken(User user)
