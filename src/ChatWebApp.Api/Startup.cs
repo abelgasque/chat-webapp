@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ChatWebApp.Api.Configurations;
-using ChatWebApp.Application.Commands;
+using ChatWebApp.Application.Auth.Commands;
 using ChatWebApp.Domain.Repositories;
 using ChatWebApp.Domain.Services;
 using ChatWebApp.Infrastructure.Persistence.Contexts;

@@ -1,7 +1,7 @@
 using MediatR;
 using ChatWebApp.Application.Shared;
 
-namespace ChatWebApp.Application.Commands
+namespace ChatWebApp.Application.Auth.Commands
 {
     public class LoginCommand : IRequest<Result<LoginResult>>
     {

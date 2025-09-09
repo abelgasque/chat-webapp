@@ -1,9 +1,9 @@
 using MediatR;
-using ChatWebApp.Application.Commands;
+using ChatWebApp.Application.Auth.Commands;
 using ChatWebApp.Application.Shared;
 using ChatWebApp.Domain.Services;
 
-namespace ChatWebApp.Application.Handlers
+namespace ChatWebApp.Application.Auth.Handlers
 {
     public class LoginCommandHandler : IRequestHandler<LoginCommand, Result<LoginResult>>
     {
