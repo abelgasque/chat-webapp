@@ -3,7 +3,7 @@ using System.Linq.Expressions;
 using ChatWebApp.Infrastructure.Persistence.Contexts;
 using ChatWebApp.Domain.Repositories;
 
-namespace ChatApi.Infrastructure.Repositories
+namespace ChatWebApp.Infrastructure.Repositories
 {
     public class AppRepository<T> : IRepository<T> where T : class
     {

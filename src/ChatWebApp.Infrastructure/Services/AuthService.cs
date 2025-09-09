@@ -1,0 +1,55 @@
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
+using ChatWebApp.Domain.Entities;
+using ChatWebApp.Domain.Services;
+
+namespace ChatWebApp.Infrastructure.Services
+{
+    public class AuthService : IAuthService
+    {
+        private readonly IConfiguration _configuration;
+        private readonly ILogger<AuthService> _logger;
+
+        public AuthService(IConfiguration configuration, ILogger<AuthService> logger)
+        {
+            _configuration = configuration;
+            _logger = logger;
+        }
+
+        public async Task<User?> ValidateUserAsync(string email, string password)
+        {
+            _logger.LogInformation("Validating user with email {Email}", email);
+            return (email == "admin@admin.com" && password == "123456")
+                ? new User("Admin", email)
+                : null;
+        }
+
+        public string GenerateJwtToken(User user)
+        {
+            _logger.LogInformation("Generating JWT token for user {Email}", user.Email);
+            var key = Encoding.UTF8.GetBytes(_configuration["Jwt:Key"]);
+            var claims = new[]
+            {
+                new Claim(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim("UserName", user.Username)
+            };
+
+            var creds = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256);
+
+            var token = new JwtSecurityToken(
+                _configuration["Jwt:Issuer"],
+                _configuration["Jwt:Audience"],
+                claims,
+                expires: DateTime.UtcNow.AddHours(2),
+                signingCredentials: creds
+            );
+
+            return new JwtSecurityTokenHandler().WriteToken(token);
+        }
+    }
+}
