@@ -1,0 +1,94 @@
+version: '3'
+services:
+  rabbitmq:
+    image: rabbitmq:management
+    container_name: chat-webapp-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_VHOST: /
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - production
+
+  postgres:
+    image: postgres:15
+    container_name: chat-webapp-postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: core_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    networks:
+      - production
+
+  opentelemetry-collector:
+    hostname: opentelemetry-collector
+    image: otel/opentelemetry-collector:latest
+    container_name: chat-webapp-opentelemetry-collector
+    command:
+      - "--config=/etc/otel-collector-config.yml"
+      - "--feature-gates=pkg.translator.prometheus.NormalizeName"
+    volumes:
+      - ./infra/otel-collector-config.yml:/etc/otel-collector-config.yml
+    restart: unless-stopped
+    environment:
+      - DEPLOY_ENV=dev
+    ports:
+      - "8888:8888"
+      - "8889:8889"
+      - "4317:4317"
+    depends_on:
+      - prometheus
+    networks:
+      - production
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: chat-webapp-grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./infra/grafana/provisioning:/etc/grafana/provisioning
+      - ./data/grafana-data:/var/lib/grafana
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - GF_AUTH_ANONYMOUS_ENABLED=true
+      - GF_AUTH_ANONYMOUS_ORG_ROLE=Admin
+      - GF_AUTH_DISABLE_LOGIN_FORM=true
+      - GF_INSTALL_PLUGINS=https://storage.googleapis.com/integration-artifacts/grafana-exploretraces-app/grafana-exploretraces-app-latest.zip;grafana-traces-app
+    depends_on:
+      - opentelemetry-collector
+      - prometheus
+    networks:
+      - production
+
+  prometheus:
+    image: prom/prometheus:latest
+    command:
+      - --config.file=/etc/prometheus.yaml
+      - --web.enable-remote-write-receiver
+      - --enable-feature=otlp-write-receiver
+      - --enable-feature=exemplar-storage
+      - --enable-feature=native-histograms
+    volumes:
+      - ./infra/prometheus.yaml:/etc/prometheus.yaml
+      - /etc/localtime:/etc/localtime:ro
+      - ./data/prometheus-data:/prometheus
+    ports:
+      - "9090:9090"
+    networks:
+      - production
+
+volumes:
+  pgdata:
+  grafana-data:
+
+networks:
+  production:
+    driver: bridge
